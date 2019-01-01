@@ -809,7 +809,7 @@ body.dragging, body.dragging * {
     position: fixed;
     right: 14px;
     bottom: 0;
-    z-index: 2;
+    z-index: 4;
 }
 
 .fixed-tool a {

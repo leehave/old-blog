@@ -1,7 +1,15 @@
-<link href="/stylesheets/selectlist.css" rel="stylesheet"/>
-<link href="/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
-<link href="/stylesheets/railscasts.css" rel="stylesheet"/>
-
+<link href="/stylesheets/selectlist.css" rel="stylesheet" />
+<link href="/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+<link href="/stylesheets/railscasts.css" rel="stylesheet" />
+<script src='/weblive2d/lib/live2d.min.js'></script>
+<script src='/weblive2d/framework/Live2DFramework.js'></script>
+<script src="/weblive2d/src/utils/MatrixStack.js"></script>
+<script src="/weblive2d/src/utils/ModelSettingJson.js"></script>
+<script src="/weblive2d/src/PlatformManager.js"></script>
+<script src="/weblive2d/src/LAppDefine.js"></script>
+<script src="/weblive2d/src/LAppModel.js"></script>
+<script src="/weblive2d/src/LAppLive2DManager.js"></script>
+<script src="/weblive2d/src/SampleApp1.js"></script>
 <div class="container-fluid render-body">
     <div class="row">
         <div class="col-md-2 category-block hidden-sm hidden-xs">
@@ -11,17 +19,14 @@
             <div class="category-split"></div>
             <div class="category-list">
                 <ul class="nav nav-pills nav-stacked">
-                    @{
-                        cateData.forEach(function(cate) {
-                            var link = cate.Link ? cate.Link : ("/blog" + (cate.Alias ? "/" + (cate.Alias) : ""));
-                            <li class='@(currentCate === cate.Alias ? "active" : "")'>
-                                <a href='@link'>
-                                    <img src="@cate.Img">
-                                    <span>@cate.CateName</span>
-                                </a>
-                            </li>
-                        });
-                    }
+                    @{ cateData.forEach(function(cate) { var link = cate.Link ? cate.Link : ("/blog" + (cate.Alias ? "/" + (cate.Alias) : ""));
+                    <li class='@(currentCate === cate.Alias ? "active" : "")'>
+                        <a href='@link'>
+                            <img src="@cate.Img">
+                            <span>@cate.CateName</span>
+                        </a>
+                    </li>
+                    }); }
                 </ul>
             </div>
         </div>
@@ -38,10 +43,10 @@
                                     <a class="current" title='@__("blog.index.sort_title")' sort="title">
                                         @__("blog.index.title")
                                     </a>
-                                    <input id="CateAlias" type="text" value="@currentCate" name="CateAlias" class="hidden"/>
-                                    <input id="SortBy" type="text" value="0" name="SortBy" class="hidden"/>
-                                    <input id="PageIndex" type="text" value="1" name="PageIndex" class="hidden"/>
-                                    <input id="PageSize" type="text" value="@config.PageSize" name="PageSize" class="hidden"/>
+                                    <input id="CateAlias" type="text" value="@currentCate" name="CateAlias" class="hidden" />
+                                    <input id="SortBy" type="text" value="0" name="SortBy" class="hidden" />
+                                    <input id="PageIndex" type="text" value="1" name="PageIndex" class="hidden" />
+                                    <input id="PageSize" type="text" value="@config.PageSize" name="PageSize" class="hidden" />
                                 </div>
                                 <div class="col-md-5 list-top-right">
                                     <div class="input-group">
@@ -66,7 +71,7 @@
                                                         <a href="#">@__("blog.index.date")</a>
                                                     </li>
                                                 </ul>
-                                                <input id="FilterType" type="text" readonly="readonly" aria_hidden="true" name="FilterType" class="hidden hidden-field"/>
+                                                <input id="FilterType" type="text" readonly="readonly" aria_hidden="true" name="FilterType" class="hidden hidden-field" />
                                             </div>
                                         </div>
                                         <input type="text" placeholder='@__("blog.index.keyword")' name="Keyword" id="Keyword" class="form-control">
@@ -128,6 +133,8 @@
             </div>
         </div>
     </div>
+    <canvas id="glCanvas" width="300px" height="300px" style="position:fixed;right:0px;bottom:-10px;z-index:3">
+    </canvas>
     @this.renderPartial('./top')
     <script type="text/javascript" src="/libs/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
@@ -143,7 +150,18 @@
             summary: "",
             title: "@config.SiteName"
         };
+        SampleApp1();
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?3b7aee058068fa69dd852ff09478e384";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+        </script>
+        
     <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=@config.JiaThisId" charset="utf-8"></script>
     <script type="text/javascript" src="/libs/jquery-qrcode/dist/jquery.qrcode.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="/javascripts/top.js" charset="utf-8"></script>

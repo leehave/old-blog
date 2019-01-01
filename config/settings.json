@@ -1,7 +1,7 @@
 {
-  "SiteName": "iBlog",
-  "SiteDomain": "www.example.com",
-  "RecordNo": "浙ICP备XXX号",
+  "SiteName": "myblog",
+  "SiteDomain": "www.felzx.com",
+  "RecordNo": "豫ICP备XXX号",
   "LogoPath": "/images/zhr.jpg",
   "PageSize": "10",
   "ExpandMenu": "false",
